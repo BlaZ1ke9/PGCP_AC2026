@@ -1,0 +1,109 @@
+#include <iostream>
+#include <cmath>
+#include <string> 
+
+using namespace std;
+
+int level = 1;
+  namespace player_level
+    {
+        int level = 10;
+    }
+namespace engine
+{
+    namespace audio
+    {
+        void playsound(string sound)
+        {
+            cout << "Playing sound " << sound << endl;
+        }
+        
+    }
+}
+int main()
+{
+ 
+    int r;
+    int c;
+    int grass = 0;
+    int water= 0;
+    int dungeon= 0;
+    int forest= 0;
+    int mountain= 0;
+    cout<< "Enter the no of rows : " << endl;
+    cin >> r;
+    cout << "Enter the no of columbs :" <<endl;
+    cin >> c;
+    int** arr = new int*[r];
+    for ( int i = 0;i<r;i++)   
+    {
+        arr[i] = new int[c];
+        for ( int j = 0;j<c;j++) 
+        {
+            
+            cout << "Enter the values of grid : " <<endl;
+            cin >> arr[i][j] ;
+        }
+    }
+    cout << endl;
+    for ( int i = 0;i<r;i++)   
+    {
+        for ( int j = 0;j<c;j++) 
+        {
+            cout << arr[i][j] << "  ";
+        }
+        cout << endl;
+    }
+    for ( int i = 0;i<r;i++)   
+    {
+        for ( int j = 0;j<c;j++) 
+        {
+            if (arr[i][j] == 0)
+            {
+                cout <<" grass tile found at " << i << "," << j << endl;
+                grass++;
+            }
+             if (arr[i][j] == 1)
+            {
+                cout <<" water tile found at " << i << "," << j << endl;
+                water ++;
+            }
+             if (arr[i][j] == 2)
+            {
+                cout << " mountain tile found at " << i << "," << j << endl;
+                mountain ++;
+            }
+             if (arr[i][j] == 3)
+            {
+                cout << " forest tile found at " << i << "," << j << endl;
+                forest ++;
+            }
+             if (arr[i][j] == 4)
+            {
+                cout << " dungeon tile found at " << i << "," << j << endl;
+                dungeon ++;
+            }   
+        }
+        
+    }
+    cout << "grass " << grass << " water " << water << " mountain " << mountain << " forest " <<  forest << " dungeon " << dungeon << endl ;
+    for ( int i = 0;i<r;i++)   
+    {
+      
+            delete[] arr[i];
+           
+        
+        
+    }
+    delete[] arr;
+
+    // bonus 
+    cout << level << endl; // prints the global value 
+    cout << player_level::level << endl; // prints the local value 
+    string sound = "";
+    cout << " enter the sound " << endl;
+    cin >> sound;
+    //string sound = "hello";
+    engine::audio::playsound(sound);
+}
+        
