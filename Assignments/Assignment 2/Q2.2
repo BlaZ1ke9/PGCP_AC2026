@@ -1,0 +1,82 @@
+#include <iostream>
+
+using namespace std;
+
+
+
+// FUNCTION OVERLOADING
+
+// 1. Integer 
+double reorderCost(int qty, double unitPrice)
+{
+    return qty * unitPrice;
+}
+
+
+// 2. Fractional 
+double reorderCost(double qty, double unitPrice)
+{
+    return qty * unitPrice;
+}
+
+
+// 3. Integer quantity with tax
+double reorderCost(int qty, double unitPrice, double taxRate)
+{
+    double cost = qty * unitPrice;
+
+    double tax = cost * taxRate / 100;
+
+    return cost + tax;
+}
+
+// DEFAULT ARGUMENT
+
+
+double applyDiscount(double price, double discountPercent = 10.0)
+{
+    return price - (price * discountPercent / 100);
+}
+
+
+int main()
+{
+  
+
+    double cost1 = reorderCost(10, 250.00);
+
+    cout << "Integer Quantity Cost : Rs. "
+         << cost1 << endl;
+
+
+
+    double cost2 = reorderCost(5.5, 100.00);
+
+    cout << "Fractional Quantity Cost : Rs. "
+         << cost2 << endl;
+
+
+    double cost3 = reorderCost(10, 250.00, 18.0);
+
+    cout << "Cost With 18% Tax : Rs. "
+         << cost3 << endl;
+
+
+
+
+    double price1 = applyDiscount(1000);
+
+    cout << "Price After Default 10% Discount : Rs. "
+         << price1 << endl;
+
+
+
+
+    double price2 = applyDiscount(1000, 20);
+
+    cout << "Price After 20% Discount : Rs. "
+         << price2 << endl;
+
+
+    return 0;
+}
