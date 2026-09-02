@@ -1,0 +1,54 @@
+#include<iostream>
+#include<cmath>
+
+using namespace std;
+
+
+
+int main(int  argc, char* argv[])
+{
+    int normal=0;
+    int warning =0;
+    int critical = 0;
+    int shutdown = 0;
+    int temp;
+    
+
+  
+    if (argc != 4)
+    {
+        cout << "Error insufficient arguments" << endl;
+    }
+    int warn_threshhold = stoi(argv[1]);
+    int critical_treshold = stoi(argv[2]);
+    int num_readings = stoi(argv[3]);
+
+
+    if (warn_threshhold >= critical_treshold || num_readings > 500 || num_readings <1)
+    {
+        cout << "error" << endl;
+        return 0;
+    }
+    for (int i=0;i<num_readings;i++)
+    {
+        temp=rand() % 70 +1;
+        if (temp>0 && temp<=29){
+            normal +=1;
+        }
+        if (temp>29 && temp<=44){
+            warning +=1;
+        }
+        if (temp>44 && temp<=59){
+            critical +=1;
+        }
+        if (temp>=65){
+            shutdown +=1;
+        }
+    }
+    cout << "Normal: " << normal << endl;
+    cout << "Warning: " << warning << endl;
+    cout << "Critical: " << critical << endl;
+    cout << "Shutdown: " << shutdown << endl;       
+
+}
+
