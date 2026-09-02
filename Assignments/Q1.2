@@ -1,0 +1,102 @@
+#include<iostream>
+#include<cmath>
+
+
+double max(double arr[], int size);
+double min(double arr[], int size);
+double avg(double arr[], int size);
+
+
+int main(){
+
+    int a;
+    std::cout << "enter no of reading" ;
+    std::cin >> a ;
+    double readings[100];
+    std::cout<< "enter readings" << std::endl;
+    for (int i=0;i<a;i++){
+        
+        std::cin >> readings[i];
+    }
+     for (int i=0;i<a;i++){
+        if (readings[i]>=0){
+            if (readings[i]>=45){
+                std::cout << "first criticalreading is at :" << readings[i] << "found at " << i << std::endl;
+                break;
+            }
+        }
+        else{
+            continue;
+        }
+            
+            
+     }
+     std::cout << "max element is :" << max(readings,a) <<std::endl;
+     std::cout << "min element is :" << min(readings,a) <<std::endl;
+     std::cout << "avg element is :" << avg(readings,a) <<std::endl;
+     int normal=0;
+     int warning =0;
+     int critical = 0;
+     int shutdown = 0;
+
+     for (int i=0;i<a;i++){
+        if (readings[i]>0 && readings[i]<=29){
+            normal +=1;
+        }
+        if (readings[i]>29 && readings[i]<=44){
+            warning +=1;
+        }
+        if (readings[i]>44 && readings[i]<=59){
+            critical +=1;
+        }
+        if (readings[i]>=065){
+            shutdown +=1;
+        }
+     }
+     std::cout<< "no of normal : " << normal << std::endl;
+     std::cout<< "no of warning : " << warning << std::endl;
+     std::cout<< "no of critical : " << critical << std::endl;
+     std::cout<< "no of shutdown : " << shutdown << std::endl;
+
+   
+
+
+}
+double max(double arr[], int size){
+    double max= 0;
+    for (int i=0;i<size;i++){
+       
+        if (arr[i]>max){
+            max=arr[i];
+        }
+    }
+    return max;
+}
+double min(double arr[], int size){
+    int min= 0;
+     
+    for (int i=0;i<size;i++){
+        if (arr[i]< 0){
+            continue;
+        }
+        if (min>arr[i]){
+            min=arr[i];
+        }
+    }
+    return min;
+}
+double avg(double arr[], int size){
+    double sum=0;
+    int b = 0;
+    for (int i=0;i<size;i++)
+    {
+        if (arr[i]>0){
+            sum+=arr[i];
+            b++;
+        }
+        else{
+            continue;
+        }
+    }
+    return sum/b;
+}
