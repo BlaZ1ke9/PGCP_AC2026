@@ -1,0 +1,23 @@
+#include<iostream>
+#include<cmath>
+
+using namespace std;
+
+int main()
+{
+    struct Layout1 { char c1; int i; char c2;};
+    struct Layout2 { int i; char c1; char c2;};
+    cout << sizeof(Layout1) << endl;  // shows output 12 
+    cout << sizeof(Layout2) << endl;    // shows output 8
+
+    
+    // -----------first case ------------  
+    // the size is different because in a struct the elements are padded so that the compiler can access them effectively.
+    // here since int is 4 byte long and charector is 1 so when struct is given memory the compiler wants to give it a memory divisible by 4 to satisfy the int requirement 
+    // so suppose its 1016 taken by c1 but int can only start at a number divisible by 4 to it is at 1020 - 1024 and previous 3 bytes are padded. now even thought the c2 needs
+    // only 1 byte the program needs to end at the number of bytes divisible by 4 which the next such number is 1027 so c2 is places at the end and 3 trailing padding is added.
+
+    // -----------second case ------------  
+    // it is much more efficient as if it starts at for eg 1016 then int is till 1019, 1020 is c2, the program still needs to end at a value where no of bytes is divisible by 4 which is 1023
+    //so only 8 spaces used.
+}
